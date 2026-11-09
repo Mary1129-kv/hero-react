@@ -1,9 +1,8 @@
-import { describe, expect, test } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
 import AxiosMockAdapter from 'axios-mock-adapter';
 
 import { getHeroesByPageAction } from './get-heroes-by-page.action';
 import { heroApi } from '../api/hero.api';
-import { beforeEach } from 'node:test';
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 

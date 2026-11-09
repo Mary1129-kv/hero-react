@@ -37,21 +37,21 @@ describe('appRouter', () => {
     expect(appRouter.routes).toMatchSnapshot();
   });
 
-  test('should render home page at root path', () => {
+  test('should render home page at root path', async () => {
     const router = createMemoryRouter(appRouter.routes, {
       initialEntries: ['/'],
     });
     render(<RouterProvider router={router} />);
-    expect(screen.getByTestId('home-page')).toBeDefined();
+    expect(await screen.findByTestId('home-page')).toBeDefined();
   });
 
-  test('should render hero page at /heroes/:idSlug path', () => {
+  test('should render hero page at /heroes/:idSlug path', async () => {
     const router = createMemoryRouter(appRouter.routes, {
       initialEntries: ['/heroes/superman'],
     });
     render(<RouterProvider router={router} />);
 
-    expect(screen.getByTestId('hero-page').innerHTML).toContain('superman');
+    expect((await screen.findByTestId('hero-page')).innerHTML).toContain('superman');
   });
 
   test('should render search page at /search path', async () => {
@@ -64,13 +64,13 @@ describe('appRouter', () => {
     expect(await screen.findByTestId('search-page')).toBeDefined();
   });
 
-  test('should redirect to home page for unknown routes', () => {
+  test('should redirect to home page for unknown routes', async () => {
     const router = createMemoryRouter(appRouter.routes, {
       initialEntries: ['/otra-pagina-rara'],
     });
 
     render(<RouterProvider router={router} />);
 
-    expect(screen.getByTestId('home-page')).toBeDefined();
+    expect(await screen.findByTestId('home-page')).toBeDefined();
   });
 });
