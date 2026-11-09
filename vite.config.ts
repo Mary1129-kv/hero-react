@@ -12,6 +12,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // Permite servir la app con `vite preview` desde el dominio de Render
+  preview: {
+    allowedHosts: ['.onrender.com'],
+  },
   test: {
     environment: 'jsdom',
     globals: true,
